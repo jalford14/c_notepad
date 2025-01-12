@@ -27,6 +27,15 @@ void insert_node(struct Node **head, int val) {
     }
 }
 
+void print_inorder(struct Node **head) {
+    if(*head == NULL) { return; }
+
+    struct Node *curr = *head;
+    print_inorder(&(curr->left));
+    printf("val: %d\n", curr->value);
+    print_inorder(&(curr->right));
+}
+
 int main() {
     printf("starting...\n");
     struct Node *head = NULL;
@@ -39,7 +48,6 @@ int main() {
     insert_node(&head, 108);
     insert_node(&head, 54);
     insert_node(&head, 13);
-    printf("val: %d\n", head->value);
-    printf("val: %d\n", head->left->value);
-    printf("val: %d\n", head->right->value);
+
+    print_inorder(&head);
 }
