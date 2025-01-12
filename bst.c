@@ -32,8 +32,24 @@ void print_inorder(struct Node **head) {
 
     struct Node *curr = *head;
     print_inorder(&(curr->left));
-    printf("val: %d\n", curr->value);
+    printf("%d, ", curr->value);
     print_inorder(&(curr->right));
+}
+
+void print_preorder(struct Node **head) {
+    if(*head == NULL) { return; }
+    struct Node *curr = *head;
+    printf("%d, ", curr->value);
+    print_preorder(&(curr->left));
+    print_preorder(&(curr->right));
+}
+
+void print_postorder(struct Node **head) {
+    if(*head == NULL) { return; }
+    struct Node *curr = *head;
+    print_postorder(&(curr->left));
+    print_postorder(&(curr->right));
+    printf("%d, ", curr->value);
 }
 
 int main() {
@@ -49,5 +65,15 @@ int main() {
     insert_node(&head, 54);
     insert_node(&head, 13);
 
+    printf("Preorder: ");
+    print_preorder(&head);
+    printf("\n");
+
+    printf("Postorder: ");
+    print_postorder(&head);
+    printf("\n");
+
+    printf("Inorder: ");
     print_inorder(&head);
+    printf("\n");
 }
